@@ -169,7 +169,7 @@ class Scan():
 
     def getSelectedReceivers(self):
         """
-        pvtools original function to determine number of channels used for acquisition
+        Pvtools original function to determine number of channels used for acquisition
 
         Parameters
         ----------
