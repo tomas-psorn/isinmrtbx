@@ -1,0 +1,528 @@
+##TITLE=Parameter List, ParaVision 6.0.1
+##JCAMPDX=4.24
+##DATATYPE=Parameter Values
+##ORIGIN=Bruker BioSpin MRI GmbH
+##OWNER=xxx
+$$ 2016-04-29 13:35:40.311 +0200  xxx@xxx
+$$ /opt/PV6.0.1/data/AnetaM/20160429_111153_NMR13_1_1/32/method
+$$ process /opt/PV6.0.1/prog/mod/acq_out
+##$Method=<Bruker:UTE>
+##$YesNoMinEchoTime=Yes
+##$PVM_EchoTime=0.538888439208046
+##$PVM_MinEchoTime=0.538888439208046
+##$AcqMode=FID
+##$PVM_RepetitionTime=30
+$$ @vis= Method YesNoMinEchoTime PVM_EchoTime PVM_MinEchoTime AcqMode
+##$NPro=402
+##$ProUndersampling=1
+##$PVM_NAverages=2
+##$PVM_NRepetitions=1
+$$ @vis= PVM_RepetitionTime NPro ProUndersampling PVM_NAverages
+##$PVM_ScanTimeStr=( 16 )
+<0h0m24s120ms>
+##$PVM_ScanTime=24120
+##$PVM_DeriveGains=Yes
+##$ExcPulse1Enum=<Calculated>
+##$ExcPulse1=(0.39375, 8000, 15, Yes, 2, 3150, 0.345530665914437, 
+0.266758393471896, 0, 50, 8.21802924944473, <$ExcPulse1Shape>)
+$$ @vis= PVM_NRepetitions PVM_ScanTimeStr PVM_DeriveGains ExcPulse1Enum
+##$ExcPulse1Ampl=(8.21802924944473, 20.2707045381318, -9.14767682660805)
+##$PVM_GradCalConst=28145.8
+##$PVM_Nucleus1Enum=<1H>
+##$PVM_Nucleus1=( 8 )
+<1H>
+##$PVM_RefPowMod1=AutoAdj
+$$ @vis= ExcPulse1 RF_Pulses PVM_GradCalConst PVM_Nucleus1Enum PVM_Nucleus1
+##$PVM_RefPowCh1=5.47626570039797
+##$PVM_RefPowStat1=( 1024 )
+<Study: Adj by AdjRefG (protocol ADJ_REFG)>
+##$PVM_Nucleus2Enum=<1H>
+##$PVM_Nucleus3Enum=<1H>
+##$PVM_Nucleus4Enum=<1H>
+##$PVM_Nucleus5Enum=<1H>
+##$PVM_Nucleus6Enum=<1H>
+##$PVM_Nucleus7Enum=<1H>
+##$PVM_Nucleus8Enum=<1H>
+##$PVM_FrqRef=( 8 )
+400.323889700005 0 0 0 0 0 0 0
+##$PVM_FrqWorkOffset=( 8 )
+0 0 0 0 0 0 0 0
+$$ @vis= PVM_RefPowMod1 PVM_RefPowCh1 PVM_RefPowStat1 PVM_FrqRef
+##$PVM_FrqWork=( 8 )
+400.323889700005 0 0 0 0 0 0 0
+##$PVM_FrqRefPpm=( 8 )
+4.7 0 0 0 0 0 0 0
+##$PVM_FrqWorkOffsetPpm=( 8 )
+0 0 0 0 0 0 0 0
+##$PVM_FrqWorkPpm=( 8 )
+4.7 0 0 0 0 0 0 0
+$$ @vis= PVM_FrqWorkOffset PVM_FrqWork PVM_FrqRefPpm PVM_FrqWorkOffsetPpm
+##$PVM_NucleiPpmWork=( 20 )
+(<1H>, 4.7) (<none>, 0) (<none>, 0) (<none>, 0) (<none>, 0) (<none>, 0) 
+(<none>, 0) (<none>, 0) (<none>, 0) (<none>, 0) (<none>, 0) (<none>, 0) 
+(<none>, 0) (<none>, 0) (<none>, 0) (<none>, 0) (<none>, 0) (<none>, 0) 
+(<none>, 0) (<none>, 0)
+##$PVM_SpatDimEnum=<2D>
+##$PVM_IsotropicFovRes=Isot_None
+$$ @vis= PVM_FrqWorkPpm PVM_NucleiPpmWork Nuclei PVM_SpatDimEnum
+##$PVM_Matrix=( 2 )
+128 128
+##$PVM_MinMatrix=( 2 )
+16 16
+##$PVM_MaxMatrix=( 2 )
+1024 1024
+##$PVM_DefMatrix=( 3 )
+128 128 128
+$$ @vis= PVM_IsotropicFovRes PVM_Matrix PVM_MinMatrix PVM_MaxMatrix
+##$PVM_AntiAlias=( 2 )
+1 1
+##$PVM_MaxAntiAlias=( 2 )
+2 8
+##$PVM_EncSpectroscopy=No
+##$PVM_EncUseMultiRec=Yes
+$$ @vis= PVM_DefMatrix PVM_AntiAlias PVM_MaxAntiAlias PVM_EncSpectroscopy
+##$PVM_EncActReceivers=( 4 )
+On On On On
+##$PVM_EncZf=( 2 )
+1 1
+##$PVM_EncPft=( 2 )
+1 1
+##$PVM_EncPftOverscans=( 2 )
+64 64
+##$PVM_EncPpi=( 2 )
+1 1
+##$PVM_EncPpiRefLines=( 2 )
+0 0
+##$PVM_EncOrder=( 2 )
+LINEAR_ENC LINEAR_ENC
+##$PVM_EncStart=( 2 )
+0 0
+##$PVM_EncNReceivers=4
+##$PVM_EncAvailReceivers=4
+$$ @vis= PVM_EncUseMultiRec PVM_EncActReceivers PVM_EncZf PVM_EncNReceivers
+##$PVM_EncChanScaling=( 4 )
+0.92 1 0.82 0.82
+##$PVM_EncMatrix=( 2 )
+128 128
+##$PVM_EncTotalAccel=1
+$$ @vis= PVM_EncAvailReceivers PVM_EncChanScaling PVM_EncMatrix
+##$PVM_EffSWh=100000
+##$PVM_AcquisitionTime=0.64
+$$ @vis= PVM_EncTotalAccel Encoding_Output Encoding PVM_EffSWh
+##$RampMode=constant_slope
+##$EffSlewRate=100
+##$SliceAlter=No
+##$ReadSpoiling=1
+$$ @vis= PVM_AcquisitionTime RampMode EffSlewRate SliceAlter SliceSelection
+##$SliceSpoiler=(Yes, 2, 0.43, 33.0504927250082)
+##$RampCompYN=Yes
+##$RampPoints=7
+##$GradSync=No
+##$GradShape2=( 287 )
+0 0.0666666666666667 0.133333333333333 0.2 0.266666666666667 
+0.333333333333333 0.4 0.466666666666667 0.533333333333333 0.6 
+0.666666666666667 0.733333333333333 0.8 0.866666666666667 0.933333333333333 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0.952380952380952 0.904761904761905 
+0.857142857142857 0.80952380952381 0.761904761904762 0.714285714285714 
+0.666666666666667 0.619047619047619 0.571428571428571 0.523809523809524 
+0.476190476190476 0.428571428571429 0.380952380952381 0.333333333333333 
+0.285714285714286 0.238095238095238 0.19047619047619 0.142857142857143 
+0.0952380952380952 0.0476190476190477 0
+##$GradRes=0.008
+$$ @vis= ReadSpoiling SliceSpoiler RampCompYN RampPoints GradSync GradShape2
+##$PVM_DigAutSet=Yes
+##$PVM_DigQuad=Yes
+##$PVM_DigFilter=<Digital_Smooth>
+##$PVM_DigRes=20
+##$PVM_DigDw=0.01
+##$PVM_DigSw=100000
+$$ @vis= GradRes PVM_DigAutSet PVM_DigQuad PVM_DigFilter PVM_DigRes PVM_DigDw
+##$PVM_DigNp=64
+##$PVM_DigShift=20
+##$PVM_DigShiftDbl=20
+##$PVM_DigGroupDel=0.2
+##$PVM_DigDur=0.64
+$$ @vis= PVM_DigSw PVM_DigNp PVM_DigShift PVM_DigShiftDbl PVM_DigGroupDel
+##$PVM_DigEndDelMin=0
+##$PVM_DigEndDelOpt=0.016
+$$ @vis= PVM_DigDur PVM_DigEndDelMin PVM_DigEndDelOpt DigitizerPars
+##$PVM_Isotropic=Isotropic_None
+##$PVM_Fov=( 2 )
+40 40
+##$PVM_FovCm=( 2 )
+4 4
+##$PVM_SpatResol=( 2 )
+0.3125 0.3125
+##$PVM_SliceThick=0.5
+##$PVM_ObjOrderScheme=Interlaced
+$$ @vis= Sequence_Details PVM_Isotropic PVM_Fov PVM_SpatResol PVM_SliceThick
+##$PVM_ObjOrderList=( 1 )
+0
+##$PVM_NSPacks=1
+##$PVM_SPackArrNSlices=( 1 )
+1
+##$PVM_MajSliceOri=No
+$$ @vis= PVM_ObjOrderScheme PVM_ObjOrderList PVM_NSPacks PVM_SPackArrNSlices
+##$PVM_SPackArrSliceOrient=( 1 )
+sagittal
+##$PVM_SPackArrReadOrient=( 1 )
+H_F
+##$PVM_SPackArrReadOffset=( 1 )
+0
+$$ @vis= PVM_MajSliceOri PVM_SPackArrSliceOrient PVM_SPackArrReadOrient
+##$PVM_SPackArrPhase1Offset=( 1 )
+0
+##$PVM_SPackArrPhase2Offset=( 1 )
+0
+##$PVM_SPackArrSliceOffset=( 1 )
+0.79
+$$ @vis= PVM_SPackArrReadOffset PVM_SPackArrPhase1Offset
+##$PVM_SPackArrSliceGapMode=( 1 )
+non_contiguous
+##$PVM_SPackArrSliceGap=( 1 )
+0
+$$ @vis= PVM_SPackArrSliceOffset PVM_SPackArrSliceGapMode
+##$PVM_SPackArrSliceDistance=( 1 )
+0.5
+##$PVM_SPackArrGradOrient=( 1, 3, 3 )
+0 0 1 0 1 0 1 0 0
+##$PVM_SliceGeo=( 1 )
+(((0 -1 0 0 0 1 -1 0 0, -0.79 0 0), 40 40 0.5, <+P;phase> <+R;read> <+S;slice>
+, 1), 1, 1, 256, 0.5, 0, No)
+##$PVM_SliceGeoObj=(<BRUKER_SLICEPACKAGE>, GeoCuboidPackId, 
+Cylinder_In_GobjShape, <PVM_SliceGeo>, <PVM_ObjOrderList>, 0, <R;read> 
+<P;phase> <S;slice>, Yes, 4195851)
+$$ @vis= PVM_SPackArrSliceGap PVM_SPackArrSliceDistance PVM_SliceGeo
+##$PVM_EffPhase0Offset=( 1 )
+0
+##$PVM_EffPhase1Offset=( 1 )
+0
+##$PVM_EffPhase2Offset=( 1 )
+0
+##$PVM_EffSliceOffset=( 1 )
+0.79
+##$PVM_EffReadOffset=( 1 )
+0
+##$PVM_Phase0Offset=( 1 )
+0
+##$PVM_Phase1Offset=( 1 )
+0
+##$PVM_Phase2Offset=( 1 )
+0
+##$PVM_SliceOffset=( 1 )
+0.79
+##$PVM_ReadOffset=( 1 )
+0
+##$PVM_DummyScans=17
+##$PVM_DummyScansDur=1020
+$$ @vis= PVM_SliceGeoObj SliceOffsetPars ImageGeometry PVM_DummyScans
+##$PVM_TriggerModule=Off
+##$PVM_TriggerMode=per_PhaseStep
+##$PVM_TriggerDelay=1
+##$PVM_TriggerDur=0.01
+##$PVM_TriggerModuleTime=0
+##$PVM_FovSatOnOff=On
+$$ @vis= PVM_DummyScansDur DummyScans_Parameters PVM_TriggerModule
+##$PVM_FovSatPulEnum=<sech>
+##$PVM_FovSatPul=(4.05, 5000, 90, No, 3, 20250, 0.1064278, 0.189614018306272, 
+0, 50, 29.4757113727412, <sech.exc>)
+##$PVM_FovSatPulAmpl=(29.4757113727412, 38.3899149339649, -14.694642952439)
+##$PVM_FovSatNSlices=4
+##$PVM_FovSatThick=( 4 )
+20 20 20 20
+$$ @vis= PVM_FovSatOnOff PVM_FovSatPulEnum PVM_FovSatPul PVM_FovSatNSlices
+##$PVM_FovSatOffset=( 4 )
+-10.6842 12.1442 -14.9313 22.7033436362251
+##$PVM_FovSatSpoil=(Yes, 10, 0.8, 2.22057997996149)
+##$PVM_FovSatSpoilDur=0.628
+##$PVM_FovSatSpoilAmp=2.22057997996149
+$$ @vis= PVM_FovSatThick PVM_FovSatOffset PVM_FovSatSpoil PVM_FovSatSpoilDur
+##$PVM_FovSatModuleTime=19.487
+##$PVM_FovSatGrad=( 4, 3 )
+0.888231991984595 0 0 0.888231991984595 0 0 0 0.888231991984595 0 
+0.0928455251473159 0 0.883366164195256
+##$PVM_FovSatRampTime=0.133
+$$ @vis= PVM_FovSatSpoilAmp PVM_FovSatModuleTime PVM_FovSatGrad
+##$PVM_FovSatAmpEnable=0.025
+##$PVM_FovSatGradWait=0.01
+##$PVM_FovSatSliceOri=( 4 )
+sagittal sagittal coronal axial
+$$ @vis= PVM_FovSatRampTime PVM_FovSatAmpEnable PVM_FovSatGradWait
+##$PVM_FovSatSliceOriMat=( 4, 9 )
+0 -1 0 0 0 1 -1 0 0 0 -1 0 0 0 1 -1 0 0 0 0 1 -1 0 0 0 -1 0 
+6.08969027922357e-17 1 6.40052239802617e-18 -0.994521895368273 
+6.12323399573677e-17 -0.104528463267653 -0.104528463267653 0 0.994521895368273
+##$PVM_FovSatSliceVec=( 4, 3 )
+1 0 0 1 0 0 0 1 0 0.104528463267653 0 0.994521895368273
+##$PVM_FovSatSlicePos=( 4, 2 )
+-1.19451 0 -1.06178 0 8.09611 0 0.729978 -2.3862175708593
+$$ @vis= PVM_FovSatSliceOri PVM_FovSatSliceOriMat PVM_FovSatSliceVec
+##$PVM_FovSatFL=( 4 )
+-2671.05 3036.05 -3732.825 5675.83590905628
+##$PVM_FovSatRfLength=4050
+##$PVM_FovSatGeoObj=(<BRUKER_FOVSAT>, GeoPlanarId, Standard_GobjShape, 
+<PVM_FovSatGeoCub>, <>, 3, <1;first> <2;second> <S;slice>, Yes, 524384)
+##$PVM_FovSatGeoCub=( 4 )
+(((0 -1 0 0 0 1 -1 0 0, 10.6842 1.19451 0), 58 58 20, <+1;first> <+2;second> 
+<+S;slice>, 0), 1, 1, 1, 20, 3, No) (((0 -1 0 0 0 1 -1 0 0, -12.1442 1.06178 
+0), 58 58 20, <+1;first> <+2;second> <+S;slice>, 0), 1, 1, 1, 20, 0, No) (((0 
+0 1 -1 0 0 0 -1 0, 0 14.9313 8.09611), 58 58 20, <+1;first> <+2;second> 
+<+S;slice>, 0), 1, 1, 1, 20, 0, No) (((6.08969027922357e-17 1 
+6.40052239802617e-18 -0.994521895368273 6.12323399573677e-17 
+-0.104528463267653 -0.104528463267653 0 0.994521895368273, 
+8.55543934308312e-15 0.729978 22.8284), 58 58 20, <+1;first> <+2;second> 
+<+S;slice>, 0), 1, 1, 1, 20, 0, No)
+$$ @vis= PVM_FovSatSlicePos PVM_FovSatFL PVM_FovSatRfLength PVM_FovSatGeoObj
+##$PVM_FatSupOnOff=On
+##$PVM_FatSupPulEnum=<Calculated>
+$$ @vis= PVM_FovSatGeoCub Fov_Sat_Parameters PVM_FatSupOnOff
+##$PVM_FatSupPul=(2.99758688121077, 1401.12702865298, 90, Yes, 3, 4200, 
+0.236151639875348, 0.200434548747244, 0, 50, 10.9284613582579, 
+<$PVM_FatSupPulShape>)
+##$PVM_FatSupPulAmpl=(10.9284613582579, 23.3756939557501, -10.3855902099304)
+##$PVM_FatSupBandWidth=1401.12702865298
+##$PVM_FatSupSpoil=(Yes, 3, 0.516, 41.3131159062602)
+##$PVM_FatSupModuleTime=3.54858688121077
+$$ @vis= PVM_FatSupPulEnum PVM_FatSupPul PVM_FatSupBandWidth PVM_FatSupSpoil
+##$PVM_FatSupPerform=Yes
+##$PVM_FatSupRampTime=0.133
+##$PVM_FatSupAmpEnable=0.025
+$$ @vis= PVM_FatSupModuleTime PVM_FatSupPerform PVM_FatSupRampTime
+##$PVM_FatSupGradWait=0.01
+##$PVM_FatSupFL=( 1 )
+-1401.12702865298
+##$PVM_FatSupRfLength=2997.58688121077
+$$ @vis= PVM_FatSupAmpEnable PVM_FatSupGradWait PVM_FatSupFL
+##$PVM_FatSupSpoilDur=0.344
+##$PVM_FatSupSpoilAmp=41.3131159062602
+$$ @vis= PVM_FatSupRfLength PVM_FatSupSpoilDur PVM_FatSupSpoilAmp
+##$PVM_MagTransOnOff=Off
+##$PVM_MagTransPulse1Enum=<gauss>
+##$PVM_MagTransPulse1=(1.82666666666667, 1500, 117.1, No, 3, 2740, 0.4181723, 
+0.298723764675971, 0, 50, 15.8885458680562, <gauss.exc>)
+##$PVM_MagTransPulse1Ampl=(15.8885458680562, 28.1855866251319, 
+-12.0108415206094)
+##$PVM_MagTransPower=10.0017644460368
+##$PVM_MagTransOffset=1500
+##$PVM_MagTransInterDelay=0.01
+##$PVM_MagTransPulsNumb=1
+##$PVM_MagTransSpoil=(Yes, 5, 2, 17.7646398396919)
+##$PVM_MagTransSpoiler=17.7646398396919
+##$PVM_MagTransModuleTime=0
+##$PVM_MagTransFL=( 1 )
+1500
+##$PVM_MtD0=1e-06
+##$PVM_MtD1=1e-06
+##$PVM_MtD2=1e-06
+##$PVM_MtD3=1e-06
+##$PVM_MtP0=10
+##$PVM_MtLp0=0
+##$PVM_NMovieFrames=1
+##$PVM_MotionSupOnOff=Off
+$$ @vis= Fat_Sup_Parameters PVM_MagTransOnOff PVM_NMovieFrames
+##$PVM_TrajIntMode=Traj_IntReduced
+##$PVM_TrajDisplayMode=<Gradient>
+##$PVM_TrajAdjMode=Traj_Adj_Auto
+##$PVM_TrajRepeatMode=No
+$$ @vis= PVM_MotionSupOnOff Preparation PVM_TrajDisplayMode PVM_TrajAdjMode
+##$PVM_TrajUpToDate=Yes
+##$PVM_TrajAdjStatus=Traj_StatusNone
+##$PVM_TrajTrig=Off
+##$PVM_TrajGradSync=No
+$$ @vis= PVM_TrajRepeatMode PVM_TrajUpToDate PVM_TrajAdjStatus PVM_TrajTrig
+##$PVM_TrajSignalType=SignalType_Fid
+##$PVM_TrajExcPulseEnum=<gauss>
+##$PVM_TrajExcPulse=(0.548, 5000, 30, No, 3, 2740, 0.4181723, 
+0.298723764675971, 0, 50, 11.586982790083, <gauss.exc>)
+$$ @vis= PVM_TrajGradSync PVM_TrajSignalType PVM_TrajExcPulseEnum
+##$PVM_TrajRfcPulseEnum=<gauss>
+##$PVM_TrajRfcPulse=(0.322, 5000, 120.33951778386, No, 3, 1610, 0.4181723, 
+0.298723764675971, 1, 0, 540, <gauss.rfc>)
+##$PVM_TrajAuto=Yes
+##$PVM_TrajSliceThick=( 2 )
+0.3125 0.3125
+##$PVM_TrajOffset=( 2 )
+6 6
+$$ @vis= PVM_TrajExcPulse TrajRFPulses PVM_TrajAuto PVM_TrajSliceThick
+##$PVM_TrajSliceDelay=0.172
+##$PVM_TrajRepDelay=250
+##$PVM_TrajAvgs=1
+##$PVM_TrajGradMode=1
+$$ @vis= PVM_TrajOffset PVM_TrajSliceDelay PVM_TrajRepDelay PVM_TrajAvgs
+##$PVM_TrajDims=2
+##$PVM_TrajAxes=2
+##$PVM_TrajAxis=( 3 )
+1 2 -1
+##$PVM_TrajInterleaves=1
+$$ @vis= PVM_TrajGradMode PVM_TrajDims PVM_TrajAxes PVM_TrajAxis
+##$PVM_TrajLocs=2
+##$PVM_TrajSteps=8
+##$PVM_TrajIntAll=402
+##$PVM_TrajSamples=71
+$$ @vis= PVM_TrajInterleaves PVM_TrajLocs PVM_TrajSteps PVM_TrajIntAll
+##$PVM_TrajJunk=0
+##$PVM_TrajResultSize=71
+##$PVM_TrajCallAcqUpdate=0
+$$ @vis= PVM_TrajSamples PVM_TrajJunk PVM_TrajResultSize
+##$PVM_TrajKUnits=1
+##$PVM_TrajKScale=( 3 )
+0.3125 0.3125 0
+##$PVM_TrajDwGrad=0.008
+##$PVM_TrajDwAcq=0.01
+$$ @vis= PVM_TrajCallAcqUpdate PVM_TrajKUnits PVM_TrajKScale PVM_TrajDwGrad
+##$PVM_TrajGradR=8.88231991984595
+##$PVM_TrajGradP=8.88231991984595
+##$PVM_TrajGradS=0
+##$PVM_TrajGradX=0
+$$ @vis= PVM_TrajDwAcq PVM_TrajGradR PVM_TrajGradP PVM_TrajGradS
+##$PVM_TrajGradY=8.88231991984595
+##$PVM_TrajGradZ=8.88231991984595
+##$PVM_TrajGradOrient=( 3, 3 )
+0 0 1 0 1 0 1 0 0
+##$PVM_TrajKx=( 71 )
+0.0160985397514463 0.00311867806313256 0.00388336080962987 
+0.00766649061502053 -0.000561031393970516 0.0190212150391967 
+0.0331566904646808 0.0359035451658955 0.040375141253275 0.0607497459431223 
+0.0797485519039297 0.0934458842549739 0.112072588082748 0.13809142687894 
+0.163026728402572 0.183559429041394 0.206234037116549 0.226049013363693 
+0.249202479542149 0.27736824107791 0.284471619150925 0.295953842983968 
+0.322844586276592 0.347898061939559 0.362007693704988 0.367829039809649 
+0.398631328871897 0.42188685281538 0.469865873378751 0.49489834276 
+0.517267571613926 0.541425033638975 0.545620461428797 0.564595898076356 
+0.594992033288506 0.618386146893877 0.631682972927523 0.664701828205449 
+0.672810003403052 0.704509907539778 0.720059294369587 0.754314074730551 
+0.774033661955922 0.808450812922109 0.830994566180842 0.859207425457565 
+0.864930146992041 0.897304445892226 0.916563499381667 0.924399693113763 
+0.944856517950773 0.96412091809053 0.992750892822427 1.01898527626563 
+1.04945043557655 1.06235064550696 1.08971567172246 1.11081161574816 
+1.13350500555544 1.16035820240819 1.19227601287291 1.21278459711259 
+1.23350959381122 1.25977608898255 1.29907481693001 1.31899940608725 
+1.32311506970916 1.355391394209 1.39686666143677 1.4261701966563 
+1.44124182720503
+$$ @vis= PVM_TrajGradX PVM_TrajGradY PVM_TrajGradZ PVM_TrajGradOrient
+##$PVM_TrajKy=( 71 )
+0.000109832304316766 0.00065593965553927 0.00318502082800681 
+0.00774702537389348 0.0151197488800889 0.0228814866246748 0.0342394681056013 
+0.0466717767906864 0.0617751819562422 0.0786948249025321 0.0979590469330341 
+0.118894152035618 0.141790578797206 0.16615705169298 0.190841291116154 
+0.215446912010149 0.240592806379839 0.265689949480821 0.290607895809611 
+0.315811940965989 0.341060204523 0.365943119270376 0.391103810026927 
+0.416342724965905 0.44126766600071 0.466291964341587 0.491505683480471 
+0.516529405091252 0.5414946915632 0.566718597275289 0.591750778074778 
+0.616579810069486 0.641742994163039 0.666858515705624 0.691749645926635 
+0.716846256512938 0.741996021897241 0.766956489604117 0.791927229484194 
+0.817221395799631 0.842192480732267 0.867099301507928 0.892262987457585 
+0.917313825685013 0.942146634121468 0.967317249976194 0.992439536339451 
+1.01724222934612 1.04231659731855 1.06747557170057 1.09230179800907 
+1.11724658879606 1.14245093585221 1.16729951826698 1.1920372833455 
+1.21728690062019 1.24220782327335 1.26693933030909 1.29199226061755 
+1.31692900975643 1.34164836933683 1.3666367235372 1.39157017302142 
+1.41624784538753 1.44099496607429 1.46592378973281 1.49077123167521 
+1.51545605753964 1.53993848004184 1.56564754171222 1.58876697321612
+##$PVM_TrajKz=( 1 )
+0
+##$PVM_TrajBx=( 71 )
+0.568700610779049 0.0676732344773108 0.0322881985493873 0.0467226809802262 
+-0.448175690206513 0.0859116731391864 0.279932763656521 0.00906804539785688 
+-0.281412084488523 -0.0533570037769762 0.036429669021383 -0.119940808937647 
+-0.189759667920702 -0.0462213303634704 0.0553466503634983 -0.0585838254207971 
+-0.143916025353256 -0.326464525808862 -0.387969480717938 -0.288240201605397 
+-0.970089789878566 -1.47084833624274 -1.42036558704265 -1.4333242196331 
+-1.83636821264181 -2.56896163852885 -2.36568926797761 -2.41943246975233 
+-1.55382709964674 -1.57326659324928 -1.66001653333428 -1.67825129719566 
+-2.47635055199788 -2.70146672249612 -2.47617802684884 -2.5467484658672 
+-2.99125366101018 -2.66740559598092 -3.30680665220875 -3.06874632261845 
+-3.409322565663 -3.05890920250051 -3.27491625635021 -2.9099501098638 
+-2.9942571106636 -2.88656176784431 -3.61506913747643 -3.32513662349394 
+-3.55300368980988 -4.20672262608049 -4.35951364578862 -4.58071020793499 
+-4.45323750035794 -4.39415667967222 -4.18325836022147 -4.65727638591015 
+-4.55948789856421 -4.69251132018674 -4.79821931663801 -4.72973026012355 
+-4.45740571908207 -4.64541730302272 -4.81395453729684 -4.75582361129555 
+-4.23138176298928 -4.43412623445612 -5.22038148674719 -4.95540089122927 
+-4.33191137703345 -4.20853146101111 -4.51844936342642
+##$PVM_TrajBy=( 71 )
+0.00629914500774565 -0.000550665272241704 0.00038836962500205 
+0.0104551470091946 -0.0010816642728872 -0.000870701338019159 
+0.0063988295021647 0.00195795825939116 -0.0115039167591935 
+0.00260926133243634 -0.00471151890253299 -0.0165410441978435 
+-0.0112581510892635 -0.00748815311643899 -0.0191445400553002 
+-0.0177098619607627 -0.00595549291134502 -0.0123069946751258 
+-0.0151588058159177 0.000804699920854871 -0.000541013073910829 
+-0.00879092680990821 0.00517655900694748 0.0100402948588392 
+0.00443208973795442 0.0189793120266529 0.0232675384836581 0.0178461599562506 
+0.0264699746035852 0.0370836126111261 0.0315003469627634 0.0342774376518148 
+0.0479505851390873 0.0472236689687791 0.0440669785639915 0.0599239259174688 
+0.0633498609053241 0.0550141777903893 0.0690358411609202 0.0766649012703917 
+0.070108449747347 0.0782951853737591 0.0876384485957761 0.0796696540479279 
+0.0838507504090693 0.0942989158305553 0.0929083132907634 0.090095299222274 
+0.0985940623869794 0.0964425712427913 0.0900595613306381 0.0978054024310737 
+0.10008127100956 0.0880790386086074 0.0887686295594027 0.0929773843498761 
+0.0765348997982515 0.0722333272225594 0.0767138397865437 0.0636775295911964 
+0.0512423745037571 0.0499483078463119 0.0387883026363548 0.0206229337012724 
+0.0125746896897741 0.00147950306411943 -0.0212077833263503 
+-0.0393580693418628 -0.0424393630197593 -0.0766658958152371 
+-0.0933977948975186
+##$PVM_TrajBz=( 1 )
+0
+##$PVM_TrajShape1Name=( 11 )
+<GradShape2>
+##$PVM_TrajInt1rName=( 9 )
+<GradAmpR>
+##$PVM_TrajInt1pName=( 9 )
+<GradAmpP>
+##$PVM_TrajIntScale=( 9 )
+1 1 1 1 1 1 1 1 1
+##$PVM_TrajNAdjPars=0
+$$ @vis= PVM_TrajKx PVM_TrajKy PVM_TrajKz PVM_TrajBx PVM_TrajBy PVM_TrajBz
+##$PVM_TrajAdjPars=( 6, 64 )
+<PVM_TrajKx> <PVM_TrajBx> <PVM_TrajKy> <PVM_TrajBy> <PVM_TrajKz> <PVM_TrajBz>
+##$PVM_TrajAdjContext=( 1024 )
+<8.80e+038.80e+030.00e+000402112217108.88e+008.88e+000.00e+008.00e-031.0000e-020.00e+000.00e+001.00e+000.00e+001.00e+000.00e+001.00e+000.00e+000.00e+00>
+##$PVM_TrajGeoExtent=40
+$$ @vis= PVM_TrajNAdjPars PVM_TrajAdjPars PVM_TrajAdjContext
+##$PVM_TrajGeoObj=(<BRUKER_TRAJECTORY>, GeoPlanarId, Standard_GobjShape, 
+<PVM_TrajGeoCub>, <>, 0, <1;first> <2;second> <S;slice>, No, 4485367)
+##$PVM_TrajGeoCub=( 2 )
+(((0 0 1 1 0 0 0 1 0, 0 0 0), 40 40 12.3125, <+1;first> <+2;second> <+S;slice>
+, 0), 2, 2, 2, 0.3125, 0, No) (((1 0 0 0 1 0 0 0 1, 0 0 0), 40 40 12.3125, 
+<+1;first> <+2;second> <+S;slice>, 0), 2, 2, 2, 0.3125, 0, No)
+$$ @vis= PVM_TrajGeoExtent PVM_TrajGeoObj PVM_TrajGeoCub TrajDetails
+##$PVM_MapShimReady=Yes
+##$PVM_MapShimLocShim=No
+##$PVM_MapShimStatus=( 128 )
+<Mapshim ready.>
+##$PVM_MapShimCalcStat=( 256 )
+<Not Calculated.>
+##$PVM_MapShimNSets=1
+##$PVM_MapShimSets=( 1 )
+(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+$$ @vis= TrajParameters PVM_MapShimReady PVM_MapShimStatus PVM_MapShimNSets
+##$PVM_MapShimNVolumes=1
+##$PVM_MapShimVolShape=Ellipsoid
+##$PVM_StudyB0Map=(</opt/PV6.0.1/data/AnetaM>, <20160429_111153_NMR13_1_1>, 9, 
+1)
+##$PVM_StudyB0MapShimset=(0, -415, 0, 0, 0, -174, -141, 0, 0, 0, 0, 0, 0, 0, 0,
+ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+$$ @vis= PVM_MapShimSets PVM_MapShimNVolumes PVM_StudyB0Map
+##$PVM_ReqShimEnum=Current_Shim
+##$PVM_MapShimUseShims=AllShims
+##$PVM_MapShimVolDerive=No
+##$PVM_MapShimVolMargin=( 3 )
+0 0 0
+##$PVM_GeoObj=( 3, 65 )
+<PVM_SliceGeoObj> <PVM_TrajGeoObj> <PVM_FovSatGeoObj>
+##$PVM_ExportHandler=( 3 )
+(<BRUKER_PARIMPORT_SLICEGEO>, <>, <Slice Geometry>) 
+(<BRUKER_PARIMPORT_SLICEORIENT>, <>, <Slice Orientation>) 
+(<BRUKER_PARIMPORT_FOVSAT>, <>, <FOV Saturation>)
+$$ @vis= PVM_StudyB0MapShimset PVM_ReqShimEnum MapShim MethodClass PVM_GeoObj
+$$ @vis= PVM_ExportHandler StandardMethodGroup
+##END=
+$$ File finished by PARX at 2016-04-29 13:35:40.314 +0200
