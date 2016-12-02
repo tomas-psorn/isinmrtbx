@@ -5,7 +5,7 @@ from math import sqrt, exp
 import matplotlib
 import matplotlib.pyplot as plt
 
-AUTHOR = 'Tomas Psorn'
+AUTHOR = 'Ross Wiliams'
 CONTACT = 'tomaspsorn@isibrno.cz'
 
 
