@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import isinmrtbx.inout.writers as writers
 
 
-AUTHOR = 'Tomas Psorn'
+AUTHOR = 'Ross Williams'
 CONTACT = 'tomaspsorn@isibrno.cz'
 
 
