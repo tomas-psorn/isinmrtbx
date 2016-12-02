@@ -11,8 +11,8 @@ import collections
 import matplotlib.pyplot as plt
 import numpy as np
 
-from isinmrtbx.tools.utils import combineChannels
-import isinmrtbx.tools.utils as utils
+from utils import combineChannels
+import utils as utils
 
 AUTHOR = 'Tomas Psorn'
 CONTACT = 'tomaspsorn@isibrno.cz'
@@ -533,7 +533,7 @@ def gridding_dcf1(traj, fog, kerWidth, iter_nr=5):
     return out
 
 
-def gridding1_1 (dataIn, trajIn, fog, kernelWid_n, trim=True, doDcf = True):
+def gridding1_1 (dataIn, trajIn, fog, kernelWid_n, trim=True, doDcf = True, iterations=4):
     """
     _n - points
     _k - kspace
@@ -541,7 +541,6 @@ def gridding1_1 (dataIn, trajIn, fog, kernelWid_n, trim=True, doDcf = True):
     """
 
     if doDcf:
-        iterations = 4
         densityCompensationFactors = gridding_dcf1(trajIn, fog, kernelWid_n, iterations)
         dataIn *= densityCompensationFactors
 
