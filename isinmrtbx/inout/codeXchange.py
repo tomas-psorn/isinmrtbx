@@ -3,6 +3,9 @@ from __future__ import unicode_literals
 
 import sys
 
+AUTHOR = 'Tomas Psorn'
+CONTACT = 'tomaspsorn@isibrno.cz'
+
 def codeXchange(querry,querryType):
     """
     You have a code of, for instance, a Bruker data type,

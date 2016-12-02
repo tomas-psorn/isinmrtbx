@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 
 from isinmrtbx.inout.jcampdx import *
 
+
 AUTHOR = 'Tomas Psorn'
 CONTACT = 'psorn@isibrno.cz'
 

@@ -1,17 +1,17 @@
 from __future__ import print_function
 
-import time
+
 import numpy as np
 import sys
 import scipy.ndimage as ndi
 import math
-from inspect import stack
 import matplotlib.pyplot as plt
 
-
-
-
 import isinmrtbx.inout.writers as writers
+
+
+AUTHOR = 'Tomas Psorn'
+CONTACT = 'tomaspsorn@isibrno.cz'
 
 
 def markValidPoints1(dataIn, metric='max', span=.05, bord=.3):

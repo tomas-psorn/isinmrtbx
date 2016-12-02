@@ -36,8 +36,8 @@ DOC_FIRSTLINE = [line for line in __doc__.splitlines() if line][0]
 # import os  # Miscellaneous operating system interfaces
 # import shutil  # High-level file operations
 # import math  # Mathematical functions
-import time  # Time access and conversions
-import datetime  # Basic date and time types
+#import time  # Time access and conversions
+#import datetime  # Basic date and time types
 # import operator  # Standard operators as functions
 # import collections  # High-performance container datatypes
 # import argparse  # Parser for command-line options, arguments and subcommands
@@ -214,7 +214,7 @@ def test():
 # ======================================================================
 if __name__ == '__main__':
     print(__doc__)
-    begin_time = time.time()
-    test()
-    end_time = time.time()
-    print('ExecTime: ', datetime.timedelta(0, end_time - begin_time))
+    #begin_time = time.time()
+    #test()
+    #end_time = time.time()
+    #print('ExecTime: ', datetime.timedelta(0, end_time - begin_time))

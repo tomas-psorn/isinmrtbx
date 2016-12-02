@@ -3,20 +3,19 @@
 # from __future__ import unicode_literals
 # from __future__ import division
 
-AUTHOR = 'Tomas Psorn'
-CONTACT = 'tomaspsorn@isibrno.cz'
-
 import math
 import sys
 import collections
-import time
 
-from cycler import cycler
+
 import matplotlib.pyplot as plt
 import numpy as np
 
 from isinmrtbx.tools.utils import combineChannels
 import isinmrtbx.tools.utils as utils
+
+AUTHOR = 'Tomas Psorn'
+CONTACT = 'tomaspsorn@isibrno.cz'
 
 
 def flashReco(dataObject):

@@ -2,11 +2,11 @@ import numpy as np
 #from scipy import fft, arange
 import os
 from math import sqrt, exp
-import cmath
 import matplotlib
 import matplotlib.pyplot as plt
 
-__author__ = 'Ross Williams'
+AUTHOR = 'Tomas Psorn'
+CONTACT = 'tomaspsorn@isibrno.cz'
 
 
 def rawDataDict(rawdataobject, searchTerms):
@@ -157,7 +157,7 @@ def plotter(data, Fs=400, phi=0):
     real, imag = removeGroupDelay(data)
     real = phaseCorrect(real, phi)
     imag = phaseCorrect(imag, phi)
-    fftdata = [z.real * cmath.exp(1j * phi) for z in np.fft.fft(y)][::-1]
+    fftdata = [z.real * exp(1j * phi) for z in np.fft.fft(y)][::-1]
     x1 = np.array(range(len(real)))
     x2 = np.array(range(len(imag)))
     plt.figure()
@@ -210,4 +210,4 @@ def phaseCorrect ( data, phi=0):
     :param phi: angle of phase correction
     :return: phase corrected data
     """
-    return [x*cmath.exp(1j*phi) for x in data]
+    return [x*exp(1j*phi) for x in data]

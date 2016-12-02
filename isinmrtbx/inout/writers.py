@@ -10,7 +10,10 @@ import matplotlib.cm as mp_cm
 import numpy as np
 from isinmrtbx.inout.codeXchange import codeXchange
 
+AUTHOR = 'Tomas Psorn'
+CONTACT = 'tomaspsorn@isibrno.cz'
 
+"""
 def writeComplex2DArrayToNifty(data, dataObject,nameOfNiftyFile):
     if nameOfNiftyFile[-4:] != '.nii':
         nameOfNiftyFile += '.nii'
@@ -69,6 +72,8 @@ def writeComplex2DArrayToNifty(data, dataObject,nameOfNiftyFile):
 
     nib.save(image,nameOfNiftyFile)
     return
+
+"""
 
 def writeJpeg(image,name):
     mp_img.imsave(name,image)
