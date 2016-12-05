@@ -11,8 +11,8 @@ import collections
 import matplotlib.pyplot as plt
 import numpy as np
 
-from utils import combineChannels
-import utils as utils
+from isinmrtbx.tools.utils import combineChannels
+import isinmrtbx.tools.utils as utils
 
 AUTHOR = 'Tomas Psorn'
 CONTACT = 'tomaspsorn@isibrno.cz'
