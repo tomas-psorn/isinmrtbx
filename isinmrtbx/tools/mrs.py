@@ -24,18 +24,4 @@ def phaseCorrect (dataIn):
     """
 
     """
-
-
-    plt.figure()
-    plt.plot(np.imag(dataIn[0:20]))
-
-
-    phi = np.complex(0,np.angle(dataIn[0]))
-    ex = np.exp(-1*phi)
-    dataOut = dataIn * ex
-
-    plt.figure()
-    plt.plot(np.imag(dataOut[0:20]))
-    plt.show()
-
-    return dataOut
+    return dataIn * np.exp(-1 * np.complex(0,np.angle(dataIn[0])))

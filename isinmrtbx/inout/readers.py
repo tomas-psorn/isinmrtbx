@@ -511,9 +511,8 @@ def fidHandle_PRESS(scan):
 
     for _dim0 in range(dims[0]):
         for _dim2 in range(dims[2]):
-            row = mrs.removeGroupDelay(dataIn[_dim0, :, _dim2])
-            row = mrs.phaseCorrect(row)
-            dataOut [_dim0, 0:len(row) , _dim2] = row
+            fid = mrs.phaseCorrect(mrs.removeGroupDelay(dataIn[_dim0, :, _dim2]))
+            dataOut [_dim0, 0:len(fid) , _dim2] = fid
 
     scan.fid = dataOut
 
