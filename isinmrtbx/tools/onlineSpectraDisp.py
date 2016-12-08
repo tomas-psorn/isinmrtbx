@@ -191,6 +191,7 @@ def removeGroupDelay(data):
     two nparrays one with the group delay corrected FOURIER TRANSFORMED real data and one with imaginary
     ----------------------------
     """
+    """
     data = data.flatten()
     reals = [x.real for x in data]
     imags = [x.imag for x in data]
@@ -202,6 +203,10 @@ def removeGroupDelay(data):
     imagsGDCFFT = np.fft.rfft(imagsGDC)  # realfft the imags
 
     return realsGDCFFT, imagsGDCFFT
+
+    """
+    return data[np.argmax(np.abs(data)):]
+
 
 def phaseCorrect ( data, phi=0):
     """

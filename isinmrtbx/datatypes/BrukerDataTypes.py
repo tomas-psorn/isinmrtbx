@@ -122,9 +122,11 @@ class Scan():
         elif self.acqp.PULPROG in ['DtiEpi.ppg', 'EPI.ppg', 'navigatorEPI_OM.ppg']:
             readers.fidHandle_Epi(self)
         elif self.acqp.PULPROG in ['FLASH.ppg']:
-            readers.fidHandleFlash(self)
+            readers.fidHandle_Flash(self)
+        elif self.acqp.PULPROG in ['PRESS.ppg']:
+            readers.fidHandle_PRESS(self)
         else:
-            print('Function to reshape fid data of' + self.acqp.PULPROG + ' sequence is not developed yet')
+            print('Function to reshape fid data of ' + self.acqp.PULPROG + ' sequence is not developed yet')
 
         return
 

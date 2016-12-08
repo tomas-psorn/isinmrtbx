@@ -6,7 +6,14 @@ import numpy as np
 import numpy.matlib as npml
 import matplotlib.pyplot as plt
 
+import isinmrtbx.tools.mrs as mrs
 from isinmrtbx.inout.jcampdx import *
+
+"""
+Temp imports
+"""
+import matplotlib.pyplot as plt
+
 
 
 AUTHOR = 'Tomas Psorn'
@@ -376,35 +383,6 @@ def bruker_requires(dataobject,minCondition, fileType ):
     return all_here
 
 
-def fidMethodBasedReshape (rawdataobject):
-    """
-    Description
-    -----------
-    Call a particular function, according to the pulse program, to reshape fid data.
-    If no function for handling of the fid of a given pulse program (sequence)
-    is not specified, nothing happens.
-
-    To add a new function for a certain sequence, just add an another elif line.
-
-    Parameters
-    ----------
-    rawdataobject
-
-    Returns
-    -------
-
-    -
-    """
-    method = rawdataobject.acqp.PULPROG
-
-
-    if method == 'UTE.ppg': fidHandle_UTE(rawdataobject)
-    elif method == 'FAIR_RARE.ppg': fidHandle_FAIR_RARE(rawdataobject)
-    elif method == 'DtiEpi.ppg' or method == 'EPI.ppg': fidHandle_Epi(rawdataobject)
-    else: print('Function to reshape fid data of this sequence is not developed yet, your data is in a pv-tools\
-                like form')
-    return
-
 def fidHandle_UTE(rawdataobject):
     minCondition = ('NI',)
     all_here = bruker_requires(rawdataobject, minCondition, 'acqp')
@@ -507,7 +485,7 @@ def fidHandle_Epi(rawdataobject):
 
     return
 
-def fidHandleFlash(scan):
+def fidHandle_Flash(scan):
 
     dataIn = scan.fid
 
@@ -522,3 +500,22 @@ def fidHandleFlash(scan):
     scan.fid = dataOut
 
     return
+
+def fidHandle_PRESS(scan):
+
+    dataIn = scan.fid
+    scan.fid = None
+
+    dims = dataIn.shape # [channels, xDimR, highDim]
+    dataOut = np.zeros_like(dataIn)
+
+    for _dim0 in range(dims[0]):
+        for _dim2 in range(dims[2]):
+            row = mrs.removeGroupDelay(dataIn[_dim0, :, _dim2])
+            row = mrs.phaseCorrect(row)
+            dataOut [_dim0, 0:len(row) , _dim2] = row
+
+    scan.fid = dataOut
+
+    return
+
