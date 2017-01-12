@@ -529,11 +529,10 @@ def gridding_dcf1(traj, fog, kerWidth, iter_nr=5):
             if weights_tmp[i] == 0.: out[i] = 0.
             else: out[i] /= weights_tmp[i]
 
-
     return out
 
 
-def gridding1_1 (dataIn, trajIn, fog, kernelWid_n, trim=True, doDcf = True, iterations=4):
+def gridding1_1 (dataIn, trajIn, fog, kernelWid_n, trim=True, doDcf = True, iterations=20):
     """
     _n - points
     _k - kspace
@@ -541,25 +540,32 @@ def gridding1_1 (dataIn, trajIn, fog, kernelWid_n, trim=True, doDcf = True, iter
     """
 
     if doDcf:
-        densityCompensationFactors = gridding_dcf1(trajIn, fog, kernelWid_n, iterations)
-        dataIn *= densityCompensationFactors
+        densityCompensation = gridding_dcf1(trajIn, fog, kernelWid_n, iterations)
+        dataIn *= densityCompensation
 
+
+
+    #create gridding kernel LUT
     kernelSamples_nr = 1000
-    beta = np.pi*np.sqrt( math.pow(kernelWid_n,2)/math.pow(fog,2)*math.pow((fog-0.5),2)-0.8 )
+    beta = np.pi*np.sqrt( math.pow(kernelWid_n,2)/math.pow(fog,2)*math.pow((fog-.5),2)-.8 )
     kernel = np.kaiser(2 * kernelSamples_nr, beta)[-kernelSamples_nr:]
 
     dim0_n = len(dataIn)
-    dim0_g = dim0_n * fog
+    dim0_g = int(dim0_n * fog) # number of samples of grid
 
     kernelWid_k = kernelWid_n / float(dim0_n)
-    kernelWid_k_div2 = kernelWid_k / 2.
+    kernelWid_k_div2 = kernelWid_k / 2. # kernel width in distance units
 
     ddim0_k = 1.0 / float(dim0_n)
-    ddim0_g = 1.0/ float(dim0_g)
+    ddim0_g = 1.0/ float(dim0_g) # step between grid points
 
-    kmax = 0.5 + kernelWid_k_div2
-    overlap = np.ceil(kernelWid_k_div2 / ddim0_g)
-    dataOut = np.zeros(dim0_g + 2 * overlap, dtype=dataIn.dtype, order='F')
+    kmax = 0.5 + kernelWid_k_div2 # overlap of kernel
+    overlap = np.ceil(kernelWid_k_div2 / ddim0_g) # overlap of kernel in samples
+    dataOut = np.zeros(dim0_g + 2 * overlap, dtype=dataIn.dtype, order='F') # output matrix including overlap
+
+    plt.figure()
+    plt.subplot(1,2,1)
+    plt.stem(dataIn)
 
     for data_x in range(0, dim0_n):
         data = dataIn[data_x]
@@ -567,7 +573,7 @@ def gridding1_1 (dataIn, trajIn, fog, kernelWid_n, trim=True, doDcf = True, iter
 
         for grid_x in range(0, len(dataOut)):
 
-            gx = grid_x * ddim0_g - kmax
+            gx = grid_x * ddim0_g - kmax # -kmax to start at -.5
             dx = abs(kx - gx)
 
             if dx < kernelWid_k_div2:
@@ -581,6 +587,11 @@ def gridding1_1 (dataIn, trajIn, fog, kernelWid_n, trim=True, doDcf = True, iter
         dataOut[overlap: 2*overlap] += dataOut[-overlap:]
         # Trim
         dataOut = dataOut[overlap:-overlap]
+
+
+    plt.subplot(1, 2, 2)
+    plt.stem(dataOut)
+    plt.show()
 
     return dataOut
 
