@@ -130,9 +130,7 @@ def readBrukerTrajFile(path,rawdataobject):
      # y coordinates
     trajData [:,:,1] = np.reshape(rawTrajData[1::2],(samples_nr, projections_nr),order='F')
 
-    setattr(rawdataobject.traj, 'data', trajData)
-
-    return
+    return trajData
 
 def readBrukerFidFile(path, dataObject):
     """
@@ -224,6 +222,8 @@ def fidBasicReshape(fidData, dimBlock, dimZ, dimR, dimAcq0, dimAcqHigh, dimCh, d
 
     if len(fidData) != dimBlock * dimAcqHigh * dimZ * dimR * dimA:
         print('Missmatch')
+
+    fidData = np.reshape(fidData, (dimBlock, dimAcqHigh * dimZ * dimR));
 
     if dimBlock != dimAcq0 * dimCh:
         fidData = np.transpose(fidData, (1, 0))
