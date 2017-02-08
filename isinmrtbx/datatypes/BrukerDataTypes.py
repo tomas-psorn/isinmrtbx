@@ -27,7 +27,7 @@ from isinmrtbx.inout import nifti
 
 class Scan():
 
-    def __init__(self,path, readFid=True, readReco=False):
+    def __init__(self,path, readFid=True, readReco=False, readTraj=True):
 
         self.path = None
         self.scanContent = None
@@ -67,6 +67,9 @@ class Scan():
         if self.isFid and readFid:
             self.fid = readers.readBrukerFidFile (self.path + 'fid',    self)
             self.methodBasedReshape()
+
+        if self.isTraj and readTraj:
+            self.traj = readers.readBrukerTrajFile (self.path + 'traj',    self)
 
         # if at least one complete reco is present and reading of recos is demanded, read them
         if self.isPdata and readReco:
@@ -115,7 +118,7 @@ class Scan():
         -
         """
 
-        if self.acqp.PULPROG in ['UTE.ppg']:
+        if self.acqp.PULPROG in ['UTE.ppg','macicekGAUTE.ppg']:
             readers.fidHandle_UTE(self)
         elif self.acqp.PULPROG in ['FAIR_RARE.ppg']:
             readers.fidHandle_FAIR_RARE(self)
