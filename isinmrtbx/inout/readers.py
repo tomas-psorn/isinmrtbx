@@ -37,14 +37,14 @@ def readBrukerParamFile(path, dataobject):
     fileType = path.split('/')
     fileType = fileType[len(fileType)-1]
 
-    recoFile = open(path)
-    recoData = recoFile.read()
-    recoFile.close()
-    recoDataLines, comments = strip_comments(recoData)
+    with open(path) as paramFile:
+        paramData = paramFile.read()
+
+    paramDataLines, comments = strip_comments(paramData)
 
     ldr_sep, ldr_usr_sep, ldr_dict_sep = '##', '$', '='
 
-    ldrs = [ldr for ldr in recoDataLines.split(ldr_sep) if ldr]
+    ldrs = [ldr for ldr in paramDataLines.split(ldr_sep) if ldr]
 
     for ldr in ldrs:
         try:
@@ -79,13 +79,12 @@ def readBrukerParamFile2(path, dataobject):
     fileType = path.split('/')
     fileType = fileType[len(fileType)-1]
 
-    recoFile = open(path)
-    recoData = recoFile.read()
-    recoDataLines, comments = strip_comments(recoData)
+    with open(path) as paramFile:
+        paramData = paramFile.read()
 
     ldr_sep, ldr_usr_sep, ldr_dict_sep = '##', '$', '='
 
-    ldrs = [ldr for ldr in recoDataLines.split(ldr_sep) if ldr]
+    ldrs = [ldr for ldr in paramData.split(ldr_sep) if ldr]
 
     for ldr in ldrs:
         try:
@@ -119,9 +118,8 @@ def readBrukerTrajFile(path,rawdataobject):
     projections_nr = rawdataobject.method.PVM_TrajIntAll
     samples_nr = rawdataobject.method.PVM_TrajSamples
 
-    trajFile = open(path,"rb")
-    rawTrajData = np.fromfile(trajFile,dtype='float64',count=-1)
-    trajFile.close()
+    with open(path,"rb") as trajFile:
+        rawTrajData = np.fromfile(trajFile,dtype='float64',count=-1)
 
     trajData = np.zeros((samples_nr, projections_nr, dimensions), dtype=rawTrajData.dtype)
 
@@ -153,9 +151,8 @@ def readBrukerFidFile(path, dataObject):
     format, bits, dimBlock, dimZ, dimR, dimAcq0, dimAcqHigh, dimCh, dimA = fidBasicInfo(dataObject)
 
     # reading part
-    fidFile = open(path,"rb")   # open file
-    fidData = fidBasicRead(fidFile, format) # read, in this config it reads all the data
-    fidFile.close() # close
+    with open(path,"rb") as fidFile:
+        fidData = fidBasicRead(fidFile, format)
 
     # pv-tools like reshape
     dataOut = fidBasicReshape(fidData, dimBlock, dimZ, dimR, dimAcq0, dimAcqHigh, dimCh, dimA)
@@ -322,9 +319,8 @@ def readBruker2dseq(path, imagedataobject):
         print('Byte order not specified correctly!')
 
     #   Read 2seq file ADD catch
-    twodseqFile = open(path,"rb")
-    twodseqData = np.fromfile(twodseqFile,dtype=format,count=-1)
-    twodseqFile.close()
+    with open(path,"rb") as twodseqFile:
+        twodseqData = np.fromfile(twodseqFile, dtype=format, count=-1)
 
     twodseqData = twodseqData.astype('f4') # so that it can be multiplyed by float slope
     twodseqData = np.reshape(twodseqData,(VisuCoreSize[0],-1),order='F')
