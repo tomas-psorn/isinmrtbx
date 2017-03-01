@@ -16,6 +16,8 @@ import numpy as np
 from os import listdir
 from os import walk
 
+import matplotlib.pyplot as plt
+
 # import xlwt
 
 from isinmrtbx.datatypes.GeneralDataTypes import ParameterClass
@@ -230,6 +232,19 @@ class Scan():
 			print ("Unable to chceck wehther there was an ACQ overflow")
 
 		pass
+
+	def showTrajectory(self, projStep = 1, sampleStep = 1):
+		try:
+			traj = self.traj
+			print("Showing trajectory of file: " + self.path)
+			plt.figure()
+			plt.axis('equal')
+			for projection in np.arange(0, traj.shape[1], projStep):
+				plt.stem(traj[0::sampleStep, projection, 0], traj[0::sampleStep, projection, 1], "+")
+			plt.show()
+		except:
+			print("No traj info in: " + self.path)
+
 
 	def export(self, attribute, less=False, mode='print'):
 		"""
