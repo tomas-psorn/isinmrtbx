@@ -1,7 +1,7 @@
 from isinmrtbx.datatypes.BrukerDataTypes import Scan
 from os import listdir
 
-PATH = "/home/psorn/Data/27jan17_signalnejsi_guma_ute_1_1/"
+PATH = "FILE with multiple UTE scans"
 
 paths = listdir(PATH)
 
