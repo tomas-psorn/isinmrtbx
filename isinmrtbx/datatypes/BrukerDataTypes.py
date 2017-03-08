@@ -246,7 +246,7 @@ class Scan():
 			print("No traj info in: " + self.path)
 
 
-	def export(self, attribute, less=False, mode='print'):
+	def export(self, attribute, mode='print'):
 		"""
 		Export parameters from given parameter file.
 		Parameters
@@ -276,22 +276,19 @@ class Scan():
 
 		for _attribute in avalible:
 			# get all avalible parameters within the parameter group of the instance
-			all = eval('dir(' + 'self' + '.' + str(_attribute) + ')')
+			if _attribute == 'acqp':
+				for _name in dir(self.acqp):
+					if _name[0] is not "_":
+						namesGlobal.append(_name)
+						_value = str(getattr(self.acqp, _name))
+						valuesGlobal.append(_value)
 
-			if less:
-				# get the list of what is considered less, defined in codeXchange
-				if _attribute == 'acqp':
-					listOfLess = codeXchange.codeXchange(None,'brukerLessAcqp')
-				elif _attribute == 'method':
-					listOfLess = codeXchange.codeXchange(None, 'brukerLessMethod')
-				# make an intersection of what's avalible and what's defined to be the less set
-				names = list(set(all).intersection(listOfLess))
-			else:
-				names = all
-
-			for name in names:
-				namesGlobal.append(name)
-				valuesGlobal.append(eval('getattr(' + 'self' + '.' + str(_attribute) + ',name)'))
+			elif _attribute == 'method':
+				for _name in dir(self.method):
+					if _name[0] is not "_":
+						namesGlobal.append(_name)
+						_value = str(getattr(self.method, _name))
+						valuesGlobal.append(_value)
 
 			# print names and values
 		if mode == 'print':
@@ -434,7 +431,7 @@ class Study():
 				if mode == 'xls':
 					exec ('sheet_' + scan + ' = book.add_sheet(\''+ scan +'\')')
 
-				names, values = eval('self.' + scan + '.export(\'all\', less=True, mode=\'lists\')')
+				names, values = eval('self.' + scan + '.export(\'all\', mode=\'lists\')')
 
 				names.insert(0,'File name')
 				values.insert(0,scan.replace('scan_',''))
@@ -443,14 +440,17 @@ class Study():
 					row = 0
 
 					for name in names:
-						stringName = 'sheet_' + str(scan) + '.write('+ str(row) + ',0 , \'' + str(name) + '\')'
-						stringValue = 'sheet_' + str(scan) + '.write('+ str(row) + ' ,1, \'' + str(values[row]) + ' \')'
+						stringName = "sheet_" + str(scan) + ".write("+ str(row) + ",0 , \"" + str(name) + "\")"
+						stringValue = "sheet_" + str(scan) + ".write("+ str(row) + " ,1 , \"" + str(values[row]) + " \")"
+
 						try:
 							exec (stringValue)
-							exec (stringName)
+							exec(stringName)
 							row += 1
 						except:
-							pass
+							exec(stringName)
+							stringValue = "sheet_" + str(scan) + ".write("+ str(row) + " ,1 , \" Value too long \")"
+							row += 1
 
 
 
