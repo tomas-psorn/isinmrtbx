@@ -405,7 +405,6 @@ class Study():
 
 		# get a list of study folder's subfolders
 
-
 		self.folders = next(walk(self.path))[1]
 
 		for folder in self.folders:
@@ -420,6 +419,7 @@ class Study():
 			obj = None
 
 	def export(self, mode='print', path=None):
+
 		scans = dir(self)
 
 		if mode == 'xls':
