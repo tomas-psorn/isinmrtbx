@@ -1,7 +1,7 @@
-from isinmrtbx.datatypes.BrukerDataTypes import Scan
+from isinmrtbx.datatypes.BrukerDataTypes import Scan, Study
 from os import listdir
 
-PATH = "FILE with multiple UTE scans"
+PATH = "/home/psorn/Data/27jan17_signalnejsi_guma_ute_1_1"
 
 paths = listdir(PATH)
 
@@ -11,3 +11,4 @@ for path in sorted(paths):
 		scan.showTrajectory(projStep=5, sampleStep=10)
 	except:
 		pass
+

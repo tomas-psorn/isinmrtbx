@@ -18,7 +18,7 @@ from os import walk
 
 import matplotlib.pyplot as plt
 
-# import xlwt
+import xlwt
 
 from isinmrtbx.datatypes.GeneralDataTypes import ParameterClass
 from isinmrtbx.inout import readers
@@ -406,13 +406,14 @@ class Study():
 		else:
 			self.path = path
 
-
 		# get a list of study folder's subfolders
-		self.folders = walk(self.path).next()[1]
+
+
+		self.folders = next(walk(self.path))[1]
 
 		for folder in self.folders:
 			# create a scan from a folder
-			obj = Scan(self.path + folder, readData=readData)
+			obj = Scan(self.path + folder, readFid=readData, readTraj=readData)
 
 			# if the folder is a scan folder, set it as an attribute
 			if obj.isScan:
@@ -425,12 +426,8 @@ class Study():
 		scans = dir(self)
 
 		if mode == 'xls':
-			# book = xlwt.Workbook(encoding="utf-8")
-			print("XLS export is not supported at the moment")
+			book = xlwt.Workbook(encoding="utf-8")
 
-
-		#todo keep, or not?
-		'''
 		for scan in scans:
 			if scan.startswith('scan_'):
 
@@ -459,6 +456,5 @@ class Study():
 
 		if mode == 'xls':
 			book.save(path)
-		'''
 
 		return
