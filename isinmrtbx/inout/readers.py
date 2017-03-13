@@ -1,6 +1,8 @@
 from __future__ import print_function
 
 import sys
+import operator
+
 
 import numpy as np
 import numpy.matlib as npml
@@ -122,7 +124,6 @@ def readBrukerTrajFile(path,rawdataobject):
         rawTrajData = np.fromfile(trajFile,dtype='float64',count=-1)
 
     trajData = np.zeros((samples_nr, projections_nr, dimensions), dtype=rawTrajData.dtype)
-
     # x coordinates
     trajData [:,:,0] = np.reshape(rawTrajData[::2],(samples_nr, projections_nr),order='F')
      # y coordinates
@@ -170,7 +171,7 @@ def fidBasicInfo(dataObject):
 
     dimZ = dataObject.acqp.NI
     dimR = dataObject.acqp.NR
-    dimAcqHigh = np.prod(dataObject.acqp.ACQ_size[1:])
+    dimAcqHigh = int(np.prod(dataObject.acqp.ACQ_size[1:]))
     dimAcq0 = dataObject.acqp.ACQ_size[0]
     dimCh = dataObject.getSelectedReceivers()
     acqp_BYTORDA = dataObject.acqp.BYTORDA
@@ -208,7 +209,7 @@ def fidBasicInfo(dataObject):
         bits = 32
 
     if acqp_GO_block_size == 'Standard_KBlock_Format':
-        dimBlock = np.ceil(float(dimAcq0)*dimCh*(bits/8)/1024)*1024/(bits/8)
+        dimBlock = int(np.ceil(float(dimAcq0)*dimCh*(bits/8)/1024)*1024/(bits/8))
     else:
         dimBlock = dimAcq0 * dimCh
 

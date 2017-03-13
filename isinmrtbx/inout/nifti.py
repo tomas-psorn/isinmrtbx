@@ -4,6 +4,7 @@ import numpy as np
 import struct
 import sys
 
+
 import matplotlib.pyplot as plt
 
 from isinmrtbx.inout.codeXchange import codeXchange
@@ -177,15 +178,15 @@ def writeNiftiHdr(fid, niftiObject):
 
     # Header key substructure
     fid.write(struct.pack('i', niftiObject.hdr.sizeof_hdr))
-    fid.write(struct.pack('c' * 10, *niftiObject.hdr.data_type))
-    fid.write(struct.pack('c' * 18, *niftiObject.hdr.db_name))
+    fid.write(struct.pack('10s', niftiObject.hdr.data_type.encode('UTF-8')))
+    fid.write(struct.pack('18s', niftiObject.hdr.db_name.encode('UTF-8')))
     fid.write(struct.pack('i', niftiObject.hdr.extents))
     fid.write(struct.pack('h', niftiObject.hdr.session_error))
-    fid.write(struct.pack('c', niftiObject.hdr.regular))
-    fid.write(struct.pack('c', niftiObject.hdr.dim_info))
+    fid.write(struct.pack('s', niftiObject.hdr.regular.encode('UTF-8')))
+    fid.write(struct.pack('s', niftiObject.hdr.dim_info.encode('UTF-8')))
 
     # Image dim
-    fid.write(struct.pack('h' * 8, *niftiObject.hdr.dim))
+    fid.write(struct.pack('8h', *niftiObject.hdr.dim))
     fid.write(struct.pack('f', niftiObject.hdr.intent_p1))
     fid.write(struct.pack('f', niftiObject.hdr.intent_p2))
     fid.write(struct.pack('f', niftiObject.hdr.intent_p3))
@@ -193,13 +194,13 @@ def writeNiftiHdr(fid, niftiObject):
     fid.write(struct.pack('h', niftiObject.hdr.datatype))
     fid.write(struct.pack('h', niftiObject.hdr.bitpix))
     fid.write(struct.pack('h', niftiObject.hdr.slice_start))
-    fid.write(struct.pack('f' * 8, *niftiObject.hdr.pixdim))
+    fid.write(struct.pack('8f', *niftiObject.hdr.pixdim))
     fid.write(struct.pack('f', niftiObject.hdr.vox_offset))
     fid.write(struct.pack('f', niftiObject.hdr.scl_slope))
     fid.write(struct.pack('f', niftiObject.hdr.scl_inter))
     fid.write(struct.pack('h', niftiObject.hdr.slice_end))
-    fid.write(struct.pack('c', niftiObject.hdr.slice_code))
-    fid.write(struct.pack('c', niftiObject.hdr.xyzt_units))
+    fid.write(struct.pack('c', niftiObject.hdr.slice_code.encode('UTF-8')))
+    fid.write(struct.pack('c', niftiObject.hdr.xyzt_units.encode('UTF-8')))
     fid.write(struct.pack('f', niftiObject.hdr.cal_max))
     fid.write(struct.pack('f', niftiObject.hdr.cal_min))
     fid.write(struct.pack('f', niftiObject.hdr.slice_duration))
@@ -208,8 +209,8 @@ def writeNiftiHdr(fid, niftiObject):
     fid.write(struct.pack('i', niftiObject.hdr.glmin))
 
     # File history substructure
-    fid.write(struct.pack('c' * 80, *niftiObject.hdr.descrip))
-    fid.write(struct.pack('c' * 24, *niftiObject.hdr.aux_file))
+    fid.write(struct.pack('80s', niftiObject.hdr.descrip.encode('UTF-8')))
+    fid.write(struct.pack('24s', niftiObject.hdr.aux_file.encode('UTF-8')))
     fid.write(struct.pack('h', niftiObject.hdr.sform_code))
     fid.write(struct.pack('h', niftiObject.hdr.qform_code))
     fid.write(struct.pack('f', niftiObject.hdr.quatern_b))
@@ -218,11 +219,11 @@ def writeNiftiHdr(fid, niftiObject):
     fid.write(struct.pack('f', niftiObject.hdr.qoffset_x))
     fid.write(struct.pack('f', niftiObject.hdr.qoffset_y))
     fid.write(struct.pack('f', niftiObject.hdr.qoffset_z))
-    fid.write(struct.pack('f' * 4, *niftiObject.hdr.srow_x))
-    fid.write(struct.pack('f' * 4, *niftiObject.hdr.srow_y))
-    fid.write(struct.pack('f' * 4, *niftiObject.hdr.srow_z))
-    fid.write(struct.pack('c' * 16, *niftiObject.hdr.intent_name))
-    fid.write(struct.pack('c' * 4, *niftiObject.hdr.magic))
+    fid.write(struct.pack('4f', *niftiObject.hdr.srow_x))
+    fid.write(struct.pack('4f', *niftiObject.hdr.srow_y))
+    fid.write(struct.pack('4f', *niftiObject.hdr.srow_z))
+    fid.write(struct.pack('16s', niftiObject.hdr.intent_name.encode('UTF-8')))
+    fid.write(struct.pack('4s', niftiObject.hdr.magic.encode('UTF-8')))
 
     return
 
@@ -240,45 +241,30 @@ def writeNiftiImg(fid, niftiObject):
 
 def bruker2nii(bruker, nii):
 
-    dataBackUp = bruker.data2dseq.data
-    bruker.data2dseq.data = bruker.data2dseq.data.astype('i',casting='safe')
+    # todo why?
+    # bruker.data2dseq = bruker.data2dseq.astype('i',casting='safe')
+
+    print('here')
 
     bruker2hdr(bruker, nii)
     bruker2img(bruker, nii)
 
-    bruker.data2dseq.data = dataBackUp
 
     return
 
 def bruker2hdr(bruker,nii):
 
-    try:
-        data_dims = np.asarray(bruker.data2dseq.data.shape)
-        datatype = codeXchange(bruker.data2dseq.data.dtype, 'datatype')
-        fov = bruker.visu_pars.VisuCoreExtent
-        matrixSize = bruker.visu_pars.VisuCoreSize
-        frameThickness = bruker.visu_pars.VisuCoreFrameThickness
-        bitpix = bruker.data2dseq.data.dtype.itemsize * 8
-        dataSlope = bruker.visu_pars.VisuCoreDataSlope[0]
-        dataOffset = bruker.visu_pars.VisuCoreDataOffs[0]
-        cal_max = np.amax(dataSlope * bruker.data2dseq.data + dataOffset)
-        cal_min = np.amin(dataSlope * bruker.data2dseq.data + dataOffset)
+    data_dims = np.asarray(bruker.data2dseq.shape)
+    datatype = codeXchange(bruker.data2dseq.dtype, 'datatype')
+    fov = bruker.visu_pars.VisuCoreExtent
+    matrixSize = bruker.visu_pars.VisuCoreSize
+    frameThickness = bruker.visu_pars.VisuCoreFrameThickness
+    bitpix = bruker.data2dseq.dtype.itemsize * 8
+    dataSlope = bruker.visu_pars.VisuCoreDataSlope[0]
+    dataOffset = bruker.visu_pars.VisuCoreDataOffs[0]
+    cal_max = np.amax(dataSlope * bruker.data2dseq + dataOffset)
+    cal_min = np.amin(dataSlope * bruker.data2dseq + dataOffset)
 
-    except:
-        try:
-            data_dims = np.asarray(bruker.data2dseq_local.data.shape)
-            datatype = codeXchange(bruker.data2dseq_local.data.dtype, 'datatype')
-            fov = bruker.method.PVM_Fov
-            matrixSize = data_dims[0:2]
-            frameThickness = bruker.method.PVM_SliceThick
-            bitpix = bruker.data2dseq_local.data.dtype.itemsize * 8
-            dataSlope = 1.0
-            dataOffset = 0.0
-            cal_max = np.amax(dataSlope * bruker.data2dseq_local.data + dataOffset)
-            cal_min = np.amin(dataSlope * bruker.data2dseq_local.data + dataOffset)
-        except:
-            print ("No image data avalible")
-            sys.exit(1)
 
     data_dims = data_dims[data_dims != 1]
     dims = np.ones(8, dtype='i2', order='F')
