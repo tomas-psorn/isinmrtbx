@@ -131,7 +131,7 @@ def readBrukerTrajFile(path,rawdataobject):
 
     return trajData
 
-def readBrukerFidFile(path, dataObject):
+def readBrukerFidFile(path, ddataObject):
     """
     Pvtools original algorithm to read and reshape fid data is used. It lacks some of the advanced functionality
     of the original code.

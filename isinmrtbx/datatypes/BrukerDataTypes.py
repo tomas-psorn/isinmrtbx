@@ -23,8 +23,8 @@ import xlwt
 from isinmrtbx.datatypes.GeneralDataTypes import ParameterClass
 from isinmrtbx.inout import readers
 from isinmrtbx.tools import recos
-from isinmrtbx.inout import codeXchange
-from isinmrtbx.datatypes.NiftiClass import NiftiObject
+from isinmrtbx.inout.codeXchange import codeXchange
+from isinmrtbx.datatypes.NiftiDataTypes import NiftiObject, NiftiHdr
 from isinmrtbx.inout import nifti
 
 class Scan():
@@ -354,6 +354,131 @@ class Reco():
 		# reshape reco data once they've ben reconstructed
 		pass
 
+	def getNiiHdr(self):
+
+		hdr = NiftiHdr()
+
+		# hdr.sizeof_hdr = DEFAULT
+
+		# hdr.data_type = DEFAULT
+
+		# hdr.self.db_name = DEFAULT
+
+		# hdr.self.extents = DEFAULT
+
+		# hdr.session_error = DEFAULT
+
+		# hdr.regular = DEFAULT
+
+		# hdr.dim_info = DEFAULT
+
+		# IMAGE DIM
+
+		# hdr.dim
+		_data_dims = np.asarray(self.data2dseq.shape)
+		_data_dims = _data_dims[_data_dims != 1] 	# only populated dimensions
+		dim = np.ones(8, dtype='i2', order='F')
+		dim[0] = len(_data_dims)
+		dim[1:1 + len(_data_dims)] = _data_dims
+		hdr.dim = dim
+
+		# hdr.intent_p1 = DEFAULT
+
+		# hdr.intent_p2 = DEFAULT
+
+		# hdr.intent_p3 = DEFAULT
+
+		#hdr.datatype
+		hdr.datatype = codeXchange('int32', 'datatype')
+		# hdr.datatype = codeXchange(self.data2dseq.dtype, 'datatype')
+
+		# hdr.bitpix
+		hdr.bitpix = self.data2dseq.dtype.itemsize * 8
+
+		# hdr.slice_start
+		hdr.slice_start = 0
+
+		# hdr.pixdim
+		fov = self.visu_pars.VisuCoreExtent
+		matrixSize = self.visu_pars.VisuCoreSize
+		frameThickness = self.visu_pars.VisuCoreFrameThickness
+		_pixdim = np.ones(8, dtype='f4', order='F')
+		_pixdim[0] = 0.0
+		_pixdim[1] = fov[0] / float(matrixSize[0])
+		_pixdim[2] = fov[1] / float(matrixSize[1])
+		_pixdim[3] = frameThickness
+		hdr.pixdim = _pixdim
+
+		# hdr.vox_offset = DEFAULT
+
+		# hdr.scl_slope
+		hdr.scl_slope = self.visu_pars.VisuCoreDataSlope[0]
+
+		# hdr.scl_inter
+		hdr.scl_inter = self.visu_pars.VisuCoreDataOffs[0]
+
+		# hdr.slice_end
+		hdr.slice_end = hdr.dim[3]
+
+		# hdr.slice_code
+		hdr.slice_code = '1'
+
+		# hdr.xyzt_units mm
+		hdr.xyzt_units = '2'
+
+		# hdr.cal_max
+		hdr.cal_max = np.amax(hdr.scl_slope * self.data2dseq + hdr.scl_inter)
+
+		# hdr.cal_min
+		hdr.cal_min = np.amin(hdr.scl_slope * self.data2dseq + hdr.scl_inter)
+
+		# hdr.slice_duration = DEFAULT
+
+		# hdr.toffset = DEFAULT
+
+		# hdr.glmax = DEFAULT
+
+		# hdr.glmin = DEFAULT
+
+		# FILE HISTORY
+
+		# hdr.descrip = DEFAULT
+
+		# hdr.aux_file = DEFAULT
+
+		# hdr.sform_code - scanner_anat
+		hdr.sform_code = 1
+
+		# hdr.qform_code
+		hdr.qform_code = 1
+
+		# hdr.quatern
+		rot_x = 0.
+		rot_y = 0.
+		rot_z = 0.
+		R_X = np.array([[1., 0., 0.], [0., np.cos(rot_x), np.sin(rot_x)], [0., np.sin(rot_x), np.cos(rot_x)]])
+		R_Y = np.array([[np.cos(rot_y), np.sin(rot_y), 0.], [0., 1., 0.], [np.sin(rot_y), np.cos(rot_y), 0.]])
+		R_Z = np.array([[np.cos(rot_z), - np.sin(rot_z), 0.], [np.sin(rot_z), np.cos(rot_z), 0.], [0., 0., 1.]])
+		R = R_X * R_Y * R_Z
+
+		a = 0.5 * np.sqrt(1. + R[0,0] + R[1,1] + R[2,2])
+		hdr.quatern_b = 0.25 * (R[2,1] - R[1,2]) / a
+		hdr.quatern_c = 0.25 * (R[0, 2] - R[2, 0]) / a
+		hdr.quatern_d = 0.25 * (R[1, 0] - R[0, 1]) / a
+
+		# hdr.qoffset
+		hdr.qoffset_x = 0.
+		hdr.qoffset_y = 0.
+		hdr.qoffset_z = 0.
+
+		hdr.srow_x = np.zeros(4, dtype='float32', order='F')
+		hdr.srow_y = np.zeros(4, dtype='float32', order='F')
+		hdr.srow_z = np.zeros(4, dtype='float32', order='F')
+
+		return hdr
+
+
+
 #todo revise this
 
 	def tonifiti(self, path):
@@ -367,9 +492,9 @@ class Reco():
 		-------
 		-
 		"""
-
-		nii = NiftiObject(bruker=self)
-		nifti.writeNifti(path, nii)
+		hdr = self.getNiiHdr()
+		nii = NiftiObject(hdr=hdr, data=self.data2dseq)
+		nii.write(path)
 		del nii
 
 		return

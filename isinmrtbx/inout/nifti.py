@@ -12,7 +12,6 @@ from isinmrtbx.inout.codeXchange import codeXchange
 AUTHOR = 'Tomas Psorn'
 CONTACT = 'tomaspsorn@isibrno.cz'
 
-
 def readNiftiImg(path, niftiObject):
 
     fileType = path[-4:]
@@ -142,39 +141,7 @@ def readNiftiHdr(path, niftiObject):
     return
 
 
-def writeNifti(path, NiftiObject):
-
-    if path[-4:] != '.nii':
-        print ("Invalid name of nifti file: ", path)
-        sys.exit(1)
-
-    fid = open(path, "wb")
-
-    writeNiftiHdr(fid, NiftiObject)
-    writeNiftiImg(fid, NiftiObject)
-
-    fid.close()
-
-    return
-
 def writeNiftiHdr(fid, niftiObject):
-
-    originator = np.array ((0,0,0), dtype='i4')
-
-    if niftiObject.hdr.qform_code == 0 and niftiObject.hdr.sform_code == 0:
-        niftiObject.hdr.sform_code = 1
-        niftiObject.hdr.srow_x[0] = niftiObject.hdr.pixdim[1]
-        niftiObject.hdr.srow_x[1] = 0
-        niftiObject.hdr.srow_x[2] = 0
-        niftiObject.hdr.srow_y[0] = 0
-        niftiObject.hdr.srow_y[1] = niftiObject.hdr.pixdim[2]
-        niftiObject.hdr.srow_y[2] = 0
-        niftiObject.hdr.srow_z[0] = 0
-        niftiObject.hdr.srow_z[1] = 0
-        niftiObject.hdr.srow_z[2] = niftiObject.hdr.pixdim[3]
-        niftiObject.hdr.srow_x[3] = (1-originator[0]) * niftiObject.hdr.pixdim[0]
-        niftiObject.hdr.srow_y[3] = (1-originator[1]) * niftiObject.hdr.pixdim[1]
-        niftiObject.hdr.srow_z[3] = (1-originator[2]) * niftiObject.hdr.pixdim[2]
 
     # Header key substructure
     fid.write(struct.pack('i', niftiObject.hdr.sizeof_hdr))
