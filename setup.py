@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='isinmrtbx',
-      version='0.6.7.2',
+      version='0.6.7.3',
       description='Tools for routine MRI data manipulation',
       author='Tomas Psorn',
       author_email='tomaspsorn@isibrno.cz',
