@@ -131,7 +131,7 @@ def readBrukerTrajFile(path,rawdataobject):
 
     return trajData
 
-def readBrukerFidFile(path, ddataObject):
+def readBrukerFidFile(path, dataObject):
     """
     Pvtools original algorithm to read and reshape fid data is used. It lacks some of the advanced functionality
     of the original code.
@@ -346,12 +346,13 @@ def readBruker2dseq(path, imagedataobject):
 
     if 'dim5_n' in locals():
         twodseqData = np.reshape(twodseqData,np.append(VisuCoreSize, dim5_n),order='F')
+        twodseqData = np.transpose(twodseqData, (1, 0, 2, 3, 4, 5))  # todo this is rather heuristic, but seems to work
     else:
         twodseqData = np.reshape(twodseqData,np.append(VisuCoreSize, NF),order='F')
-
-    twodseqData  = np.transpose(twodseqData, (1,0,2,3,4)) #todo this is rather heuristic, but seems to work
+        twodseqData = np.transpose(twodseqData, (1, 0, 2, 3, 4))  # todo this is rather heuristic, but seems to work
 
     return twodseqData
+
 
 
 def bruker_requires(dataobject,minCondition, fileType ):

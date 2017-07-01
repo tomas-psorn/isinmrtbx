@@ -29,7 +29,7 @@ from isinmrtbx.inout import nifti
 
 class Scan():
 
-	def __init__(self,path, readFid=True, readReco=False, readTraj=True):
+	def __init__(self, path, readFid=True, readReco=False, readTraj=True):
 
 		self.path = None
 		self.scanContent = None
@@ -67,7 +67,7 @@ class Scan():
 			readers.readBrukerParamFile(self.path + 'method',self)
 
 		if self.isFid and readFid:
-			self.fid = readers.readBrukerFidFile (self.path + 'fid',    self)
+			self.fid = readers.readBrukerFidFile (self.path + 'fid', self)
 			self.methodBasedReshape()
 
 		if self.isTraj and readTraj:
@@ -333,7 +333,7 @@ class Reco():
 				self.visu_pars = ParameterClass()
 				readers.readBrukerParamFile(self.path + 'visu_pars', self)
 
-			if self.reco:
+			if self.isReco:
 				self.reco = ParameterClass()
 				readers.readBrukerParamFile(self.path + 'reco', self)
 
@@ -348,6 +348,7 @@ class Reco():
 		self.isVisu = 'visu_pars' in recoContent
 		self.isReco = 'reco' in recoContent
 		self.is2dseq = '2dseq' in recoContent
+
 
 
 	def methodBasedReshape(self):
