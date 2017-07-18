@@ -6,9 +6,6 @@ Reco
 from __future__ import print_function
 from __future__ import unicode_literals
 
-AUTHOR = 'Tomas Psorn'
-CONTACT = 'tomaspsorn@isibrno.cz'
-
 import sys
 
 import numpy as np
@@ -25,7 +22,10 @@ from isinmrtbx.inout import readers
 from isinmrtbx.tools import recos
 from isinmrtbx.inout.codeXchange import codeXchange
 from isinmrtbx.datatypes.NiftiDataTypes import NiftiObject, NiftiHdr
-from isinmrtbx.inout import nifti
+
+AUTHOR = 'Tomas Psorn'
+CONTACT = 'tomaspsorn@isibrno.cz'
+
 
 class Scan():
 
